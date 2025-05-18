@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact - 太太太上皇 News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Ensure full height for vertical centering */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center; /* center horizontally */
+      align-items: center;     /* center vertically */
+      min-height: 80vh;        /* at least 80% viewport height */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Center the contact form and style inputs */
+    .contact-form {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .contact-form button {
+      width: 150px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      align-self: center;
+    }
+
+    .content h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar solid" id="navbar">
+  <div class="nav-center" id="navbarLogoWrapper">
+    <a href="main.html"><img src="logo.png" alt="Logo" class="navbar-logo" id="navbarLogo" style="opacity:1;" /></a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+</header>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar" id="sidebarMenu">
+  <div class="close-btn" id="closeBtn">&times;</div>
+  <a href="main.html">Home</a>
+  <a href="{{ url_for('main') }}#news">News</a>
+  <a href="contact.html">Contact</a>
+  <a href="{{ url_for('main') }}#about">About</a>
+</div>
+
+<main>
+  <section class="content">
+    <h2>Get in Touch</h2>
+    <!-- Form action points to Flask route /send -->
+    <form action="{{ url_for('send_email') }}" method="POST" class="contact-form">
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="message">Message:</label><br />
+      <textarea id="message" name="message" rows="6" required></textarea><br /><br />
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+</main>
+
+<script>
+  const navbarLogo = document.getElementById('navbarLogo');
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebarMenu');
+  const overlay = document.getElementById('overlay');
+  const closeBtn = document.getElementById('closeBtn');
+
+  navbarLogo.style.opacity = '1';
+
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+</script>
+
+</body>
+</html>

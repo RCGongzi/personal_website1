@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>太太太上皇 News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<header class="navbar transparent" id="navbar">
+  <div class="nav-center" id="navbarLogoWrapper">
+    <a href="main.html"><img src="logo.png" alt="Logo" class="navbar-logo" id="navbarLogo" /></a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">&#9776;</div>
+</header>
+
+<!-- ✅ Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- ✅ Sidebar Menu -->
+<div class="sidebar" id="sidebarMenu">
+  <div class="close-btn" id="closeBtn">&times;</div>
+  <a href="main.html">Home</a>
+  <a href="#news">News</a>
+  <a href="contact.html">Contact</a>
+  <a href="#about">About</a>
+</div>
+
+<main>
+  <section class="intro">
+    <img src="logo.png" alt="Main Logo" class="main-logo" id="mainLogo" />
+  </section>
+
+  <section class="content">
+    <h1>Welcome to 太太太上皇 News</h1>
+    <p>Scroll down to see the logo shrink and center in the navbar.</p>
+    <p style="height: 1500px;">(More elegant content...)</p>
+  </section>
+</main>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const mainLogo = document.getElementById('mainLogo');
+  const navbarLogo = document.getElementById('navbarLogo');
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebarMenu');
+  const overlay = document.getElementById('overlay');
+  const closeBtn = document.getElementById('closeBtn');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 180) {
+      navbar.classList.remove('transparent');
+      navbar.classList.add('solid');
+      mainLogo.classList.add('shrink-logo');
+      navbarLogo.style.opacity = '1';
+    } else {
+      navbar.classList.remove('solid');
+      navbar.classList.add('transparent');
+      mainLogo.classList.remove('shrink-logo');
+      navbarLogo.style.opacity = '0';
+    }
+  });
+
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+</script>
+
+</body>
+</html>
